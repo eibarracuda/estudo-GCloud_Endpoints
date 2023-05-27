@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: esp-airportnames
+  labels:
+    app: esp-airportnames
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: esp-airportnames
+  template:
+    metadata:
+      labels:
+        app: esp-airportnames
+    spec:
+      containers:
+      # [START esp]
+      - name: esp
+        image: gcr.io/endpoints-release/endpoints-runtime:1
+        args: [
+          "--http_port=8081",
+          "--backend=127.0.0.1:8080",
+          "--service=airportname.endpoints.variosgatosendpoints.cloud.goog",
+          "--rollout_strategy=managed",
+        ]
+      # [END esp]
+        ports:
+        - containerPort: 8081
+      - name: airportnames
+        image: registry.hub.docker.com/variosgatos/airportnames
+        ports:
+        - containerPort: 8080

@@ -6,6 +6,7 @@
 ## Recursos usados
 - Google Cloud Endpoints
 - Google App Engine
+- Kubernetes
 
 
 
