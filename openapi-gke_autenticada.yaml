@@ -18,9 +18,14 @@ info:
   description: "Get the name of an airport from its three-letter IATA code."
   version: "1.0.0"
 # This field will be replaced by the deploy_api.sh script.
-host: "airport.endpoints.rmerceslabsteste07.cloud.goog"
+host: "airportname.endpoints.variosgatosendpoints.cloud.goog"
+x-google-endpoints:
+  - name: "airportname.endpoints.variosgatosendpoints.cloud.goog"
+    target: "35.188.198.140"
 schemes:
   - "https"
+security: 
+  - api_key: []
 paths:
   "/airportName":
     get:
@@ -39,3 +44,10 @@ paths:
             type: string
         400:
           description: "The IATA code is invalid or missing."
+
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "Key"
+    in: "query"
+
